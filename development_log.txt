@@ -3,3 +3,6 @@
 
 07/11/2022 21:35 - Edit title element in index.html.
 
+07/11/2022 22:34 - Set up modules and factory functions.
+    -Add gameBoardModule and displayControllerModule.
+    -Add createPlayer factory function.
