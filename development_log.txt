@@ -6,3 +6,8 @@
 07/11/2022 22:34 - Set up modules and factory functions.
     -Add gameBoardModule and displayControllerModule.
     -Add createPlayer factory function.
+
+07/13/2022 23:00 - Gameboard and renderArrayToScreenModule module.
+    -Add gameboard elements to index.html.
+    -Add renderArrayToScreenModule.
+    -Add css style rules to display gameboard.

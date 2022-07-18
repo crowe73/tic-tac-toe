@@ -1,0 +1,102 @@
+html, body
+{
+    background-color: #000000;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+h1
+{
+    color: #009000;
+    text-align: center;
+}
+
+.container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    text-align: center;
+    height: 400px;
+    width: 400px;
+    /*background-color: #919191;*/   /*Silver background*/
+}
+
+.grid-box-0
+{
+    border-right: 2px solid #009000;
+    border-bottom: 2px solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
+
+.grid-box-1
+{
+    border-left: 2px solid #009000;
+    border-right: 2px solid #009000;
+    border-bottom: 2px solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
+
+.grid-box-2
+{
+    border-left: 2px solid #009000;
+    border-bottom: 2px solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
+
+.grid-box-3
+{
+    border-top: 2px solid #009000;
+    border-right: 2px solid #009000;
+    border-bottom: 2px solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
+
+.grid-box-4
+{
+    border-top: 2px solid #009000;
+    border-bottom: 2px solid #009000;
+    border-left: 2px solid #009000;
+    border-right: 2px solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
+
+.grid-box-5
+{
+    border-left: 2px solid #009000;
+    border-bottom: 2px solid #009000;
+    border-top: solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
+
+.grid-box-6
+{
+    border-top: 2px solid #009000;
+    border-right: 2px solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
+
+.grid-box-7
+{
+    border-top: 2px solid #009000;
+    border-left: 2px solid #009000;
+    border-right: 2px solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
+
+.grid-box-8
+{
+    border-top: 2px solid #009000;
+    border-left: 2px solid #009000;
+    color: #009000;
+    font-size: 100px;
+}
