@@ -5,9 +5,41 @@ let gameBoardModule = (() =>
     return {gameBoard};
 })();
 
-// Setup the displayController module.
+// Setup the displayController module to control whose turn it is.
 let displayControllerModule = (() => 
 {
+    const makeMove = document.querySelectorAll(".game-board-button");
+
+    // Start indexing and looping through each button node.
+    let index = 0;
+    makeMove.forEach(makeMoves => 
+        {
+            makeMoves.dataset.linkedButton = index;
+            makeMoves.addEventListener("click", renderArrayToScreen);
+
+            function renderArrayToScreen()
+            {
+                const gridBoxes = document.querySelectorAll(".grid-box");
+
+                // Start indexing and looping through each grid box node.
+                let index = 0;
+                gridBoxes.forEach(gridBox => 
+                    {
+                        gridBox.dataset.linkedButton = index;
+
+                        // Render clicked play on the correct grid box and display.
+                        if (gridBox.getAttribute("data-linked-button") == makeMoves.getAttribute("data-linked-button"))
+                        {
+                            gridBox.textContent = gameBoardModule.gameBoard[gameBoardModule.gameBoard.length -1];
+                            console.log("Show me my makeMoves linked button value...", makeMoves.dataset.linkedButton);
+                            console.log("Show me my gridBox linked button value...", gridBox.dataset.linkedButton);
+                        }
+                    index++;
+                    })
+            }
+        index++;
+        })
+
     let testF = () => 
     {
         console.log("testing private function call inside of a module object...")
@@ -26,20 +58,8 @@ let createPlayer = (playerName, playerNumber, assignedXO) =>
     return {getPlayerName, playerName, playerNumber, assignedXO};
 };
 
-// Set up the render module for array display to the gameboard.
-let renderArrayToScreenModule = (() => 
-{
-    const gridBoxes = document.querySelectorAll(".grid-box");
-    gridBoxes[0].textContent = gameBoardModule.gameBoard;
-    console.log("Show me the array as seen inside of renderArrayToScreenModule...", gameBoardModule.gameBoard);
-    console.log("Show me the node list of the gridBoxes as seeninside of renderArrayToScreenModule...", gridBoxes);
-    return {};
-})();
-
 // TODO: Create inputs for name, and assignedXO - asking them for their preference.
 // TODO: Do I need to assign player numbers?
 
 let Chad = createPlayer("Chad", 1, "x");
 let Kandy = createPlayer("Kandy", 2, "o");
-
-renderArrayToScreenModule;

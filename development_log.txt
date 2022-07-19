@@ -11,3 +11,8 @@
     -Add gameboard elements to index.html.
     -Add renderArrayToScreenModule.
     -Add css style rules to display gameboard.
+
+07/18/2022 23:00 - Grid box buttons and displayControllerModule refactor.
+    -Add buttons to grid boxes.
+    -Refactor displayControllerModule
+    -Style select buttons in grid boxes and grid boxes themselves.
