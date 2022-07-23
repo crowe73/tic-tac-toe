@@ -11,3 +11,5 @@
 07/13/2022 23:00 - Gameboard and renderArrayToScreenModule module.
 
 07/18/2022 23:00 - Grid box buttons and displayControllerModule refactor.
+
+07/23/2022 00:09 - Player factory function and gameboard module.

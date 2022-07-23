@@ -20,15 +20,36 @@ h1
     text-align: center;
     height: 400px;
     width: 400px;
-    gap: 10px;
-    /*background-color: #919191;*/   /*Silver background*/
+    gap: 5px;
 }
 
 .grid-box
 {
+    border: 1px solid #00ff00;
+    color: #00ff00;
     font-size: 80px;
     display: grid;
     grid-template-rows: 1fr .3fr;
+}
+
+.grid-box:nth-child(-n + 3) 
+{
+    border-top: none;
+}
+
+.grid-box:nth-child(3n + 1) 
+{
+    border-left: none;
+}
+
+.grid-box:nth-child(3n + 3) 
+{
+    border-right: none;
+}
+
+.grid-box:nth-last-of-type(-n + 3) 
+{
+    border-bottom: none;
 }
 
 .game-board-button
@@ -40,71 +61,16 @@ h1
     font-size: 40px;
 }
 
-.grid-box-0
+.start-game-button
 {
-    border-right: 2px solid #00ff00;
-    border-bottom: 2px solid #00ff00;
+    margin-top: 25px;
+    padding: 10px;
+    font-weight: 900;
+    border: 1px solid #00ff00;
+    border-radius: 10px;
+    background-color: #000000;
     color: #00ff00;
-}
-
-.grid-box-1
-{
-    border-left: 2px solid #00ff00;
-    border-right: 2px solid #00ff00;
-    border-bottom: 2px solid #00ff00;
-    color: #00ff00;
-}
-
-.grid-box-2
-{
-    border-left: 2px solid #00ff00;
-    border-bottom: 2px solid #00ff00;
-    color: #00ff00;
-}
-
-.grid-box-3
-{
-    border-top: 2px solid #00ff00;
-    border-right: 2px solid #00ff00;
-    border-bottom: 2px solid #00ff00;
-    color: #00ff00;
-}
-
-.grid-box-4
-{
-    border-top: 2px solid #00ff00;
-    border-bottom: 2px solid #00ff00;
-    border-left: 2px solid #00ff00;
-    border-right: 2px solid #00ff00;
-    color: #00ff00;
-}
-
-.grid-box-5
-{
-    border-left: 2px solid #00ff00;
-    border-bottom: 2px solid #00ff00;
-    border-top: solid #00ff00;
-    color: #00ff00;
-}
-
-.grid-box-6
-{
-    border-top: 2px solid #00ff00;
-    border-right: 2px solid #00ff00;
-    color: #00ff00;
-}
-
-.grid-box-7
-{
-    border-top: 2px solid #00ff00;
-    border-left: 2px solid #00ff00;
-    border-right: 2px solid #00ff00;
-    color: #00ff00;
-}
-
-.grid-box-8
-{
-    border-top: 2px solid #00ff00;
-    border-left: 2px solid #00ff00;
-    color: #00ff00;
+    box-shadow: 0 0 10px #00ff00,
+                0 0 15px #00ff00,
+                0 0 10px #00ff00 inset;
 }

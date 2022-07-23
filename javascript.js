@@ -1,11 +1,89 @@
-// Setup the gameboard module.
+// Player factory function.
+let createPlayer = () => 
+{
+    // Loop twice to capture the player's first name and auto assign player number.
+    for (let i = 0; i < 4; i++)
+    {
+        if (gameBoardModule.playerArray.length >= 6)
+        {
+            gameBoardModule.makePlayerMove();
+            break;
+        }
+        else if (gameBoardModule.playerArray.length == 0)
+        {
+            let playerName = prompt("Player 1, what is your first name?");
+
+            if (playerName == "" || playerName == null)
+            {
+                alert("Sorry, name cannot be blank");
+                continue;
+            }
+
+            let playerNumber = 1;
+            let assignedXO = "x";
+            alert("You are player 1, and your assigned letter is x.");
+            gameBoardModule.playerArray.push(playerName, playerNumber, assignedXO);
+            console.log("Show me the contents of the playerArray...", gameBoardModule.playerArray);
+            //return {playerName, playerNumber, assignedXO};
+        }
+        else if (gameBoardModule.playerArray.length !== 0)
+        {
+            let playerName = prompt("Player 2, what is your first name?");
+
+            if (playerName == "" || playerName == null)
+            {
+                alert("Sorry, name cannot be blank");
+                continue;
+            }
+
+            let playerNumber= 2;
+            let assignedXO = "o";
+            alert("You are player 2, and your assigned letter is o");
+            gameBoardModule.playerArray.push(playerName, playerNumber, assignedXO);
+            console.log("Show me the contents of the playerArray...", gameBoardModule.playerArray);
+            //return {playerName, playerNumber, assignedXO};
+        }
+    }
+};
+
+// Gameboard module.
 let gameBoardModule = (() => 
 {
-    let gameBoard = ["x"];
-    return {gameBoard};
+    let gameBoard = [];
+    let playerArray = [];
+
+    // Publicly exposed function to invoke the player's next move.
+    let makePlayerMove = () => 
+    {
+        // Check for two player submission and gameboard array doesn't spill over grid boxes.
+        if (playerArray.length == 6 && gameBoard.length < 9)
+        {
+            // Controls for player moves.
+            if (gameBoard.length == 0)
+            {
+                alert("Player 1, please make your move.");
+                gameBoard.push(playerArray[2]);
+                console.log("Show me the current gameboard array...", gameBoard);
+            }
+            else if (gameBoard[gameBoard.length - 1] == "x")
+            {
+                alert("Player 2, please make your move");
+                gameBoard.push(playerArray[5]);
+                console.log("Show me the current gameboard array...", gameBoard);
+            }
+            else if (gameBoard[gameBoard.length - 1] == "o")
+            {
+                alert("Player 1, please make your move");
+                gameBoard.push(playerArray[2]);
+                console.log("Show me the current gameboard array...", gameBoard);
+            }
+        }
+    };
+
+    return {gameBoard, playerArray, makePlayerMove};
 })();
 
-// Setup the displayController module to control whose turn it is.
+// Display Controller module.
 let displayControllerModule = (() => 
 {
     const makeMove = document.querySelectorAll(".game-board-button");
@@ -36,30 +114,14 @@ let displayControllerModule = (() =>
                         }
                     index++;
                     })
+
+            gameBoardModule.makePlayerMove();
             }
+
         index++;
         })
 
-    let testF = () => 
-    {
-        console.log("testing private function call inside of a module object...")
-    };
-    return {testF};
+        // Listen for click to start the game.
+        const startGameButton = document.querySelector(".start-game-button");
+        startGameButton.addEventListener("click", createPlayer);
 })();
-
-// Setup the player factory function.
-let createPlayer = (playerName, playerNumber, assignedXO) => 
-{
-    let getPlayerName = () => 
-    {
-        playerName;
-        console.log("This the name of player " + playerNumber + "..." + playerName);
-    }
-    return {getPlayerName, playerName, playerNumber, assignedXO};
-};
-
-// TODO: Create inputs for name, and assignedXO - asking them for their preference.
-// TODO: Do I need to assign player numbers?
-
-let Chad = createPlayer("Chad", 1, "x");
-let Kandy = createPlayer("Kandy", 2, "o");

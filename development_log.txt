@@ -16,3 +16,9 @@
     -Add buttons to grid boxes.
     -Refactor displayControllerModule
     -Style select buttons in grid boxes and grid boxes themselves.
+
+07/23/2022 00:09 - Player factory function and gameboard module.
+    -Refactor css style rules in style.css file.
+    -Add createPlayer function to player factory function.
+    -Add makePlayerMove function to gameboard module.
+    -Add start game button element to index.html file.
