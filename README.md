@@ -13,3 +13,5 @@
 07/18/2022 23:00 - Grid box buttons and displayControllerModule refactor.
 
 07/23/2022 00:09 - Player factory function and gameboard module.
+
+07/23/2022 21:07 - Clear board button, checkWin() function.

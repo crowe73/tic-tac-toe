@@ -22,3 +22,9 @@
     -Add createPlayer function to player factory function.
     -Add makePlayerMove function to gameboard module.
     -Add start game button element to index.html file.
+
+07/23/2022 21:07 - Clear board button, checkWin() function.
+    -Add clear board button html element to index.html file.
+    -Add css style rules for clear board button.
+    -Add clearBoard() function to javascript.js file.
+    -Add checkWin() function to javascript.js file.

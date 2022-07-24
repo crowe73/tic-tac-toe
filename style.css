@@ -64,6 +64,15 @@ h1
 .start-game-button
 {
     margin-top: 25px;
+}
+
+.clear-board-button
+{
+    margin-top: 15px;
+}
+
+.start-game-button, .clear-board-button
+{
     padding: 10px;
     font-weight: 900;
     border: 1px solid #00ff00;
