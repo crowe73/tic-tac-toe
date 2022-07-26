@@ -28,3 +28,5 @@
     -Add css style rules for clear board button.
     -Add clearBoard() function to javascript.js file.
     -Add checkWin() function to javascript.js file.
+
+07/25/2022 20:47 - Minor code cleanup.

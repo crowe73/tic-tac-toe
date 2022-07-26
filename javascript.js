@@ -91,109 +91,109 @@ let displayControllerModule = (() =>
     // Start indexing and looping through each button node.
     let index = 0;
     makeMove.forEach(makeMoves => 
+    {
+        makeMoves.dataset.linkedButton = index;
+        makeMoves.addEventListener("click", renderArrayToScreen);
+
+        function renderArrayToScreen()
         {
-            makeMoves.dataset.linkedButton = index;
-            makeMoves.addEventListener("click", renderArrayToScreen);
+            const gridBoxes = document.querySelectorAll(".grid-box");
 
-            function renderArrayToScreen()
+            // Start indexing and looping through each grid box node.
+            let index = 0;
+            gridBoxes.forEach(gridBox => 
             {
-                const gridBoxes = document.querySelectorAll(".grid-box");
+                gridBox.dataset.linkedButton = index;
 
-                // Start indexing and looping through each grid box node.
-                let index = 0;
-                gridBoxes.forEach(gridBox => 
-                    {
-                        gridBox.dataset.linkedButton = index;
+                // Render clicked play on the correct grid box and display on DOM.
+                if (gridBox.getAttribute("data-linked-button") == makeMoves.getAttribute("data-linked-button"))
+                {
+                    gridBox.textContent = gameBoardModule.gameBoard[gameBoardModule.gameBoard.length -1];
+                    console.log("Show me my makeMoves linked button value...", makeMoves.dataset.linkedButton);
+                    console.log("Show me my gridBox linked button value...", gridBox.dataset.linkedButton);
+                }
+            index++;
+            })
 
-                        // Render clicked play on the correct grid box and display on DOM.
-                        if (gridBox.getAttribute("data-linked-button") == makeMoves.getAttribute("data-linked-button"))
-                        {
-                            gridBox.textContent = gameBoardModule.gameBoard[gameBoardModule.gameBoard.length -1];
-                            console.log("Show me my makeMoves linked button value...", makeMoves.dataset.linkedButton);
-                            console.log("Show me my gridBox linked button value...", gridBox.dataset.linkedButton);
-                        }
-                    index++;
-                    })
+            // Run local function to check for win/disable gameboard from further play/display winner on DOM.
+            function checkWin(player)
+            {
+                const horizontal = [0,3,6].map(i=>{return[i,i+1,i+2]});
+                const vertical = [0,1,2].map(i=>{return[i,i+3,i+6]});
+                const diagonal = [[0,4,8],[2,4,6]];
 
-                    // Run local function to check for win/disable gameboard from further play/display winner on DOM.
-                    function checkWin(player)
-                    {
-                        const horizontal = [0,3,6].map(i=>{return[i,i+1,i+2]});
-                        const vertical = [0,1,2].map(i=>{return[i,i+3,i+6]});
-                        const diagonal = [[0,4,8],[2,4,6]];
+                let allWins = [].concat(horizontal).concat(vertical).concat(diagonal);
 
-                        let allWins = [].concat(horizontal).concat(vertical).concat(diagonal);
-
-                        let results = allWins.some(indices => 
-                            {
-                                return gridBoxes[indices[0]].textContent == player && 
-                                gridBoxes[indices[1]].textContent == player && 
-                                gridBoxes[indices[2]].textContent == player
-                            })
-                            return results;
-                    }
-
-                    if (checkWin("x") == true)
-                    {
-                        console.log(gameBoardModule.playerArray[0], " wins!");
-                        const body = document.querySelector("body");
-                        const playerWinMessage = document.createElement("h1");
-                        playerWinMessage.textContent = (gameBoardModule.playerArray[0] + " wins!");
-                        body.appendChild(playerWinMessage);
-                        makeMove.forEach(makeMoves => 
-                            {
-                                makeMoves.remove();
-                            });
-                        startGameButton.remove();
-                        return;
-                    }
-
-                    else if (checkWin("o") == true)
-                    {
-                        console.log(gameBoardModule.playerArray[3], " wins!");
-                        const body = document.querySelector("body");
-                        const playerWinMessage = document.createElement("h1");
-                        playerWinMessage.textContent = (gameBoardModule.playerArray[3] + " wins!");
-                        body.appendChild(playerWinMessage);
-                        makeMove.forEach(makeMoves => 
-                            {
-                                makeMoves.remove();
-                            });
-                        startGameButton.remove();
-                        return;
-                    }
-
-                    else if (gameBoardModule.gameBoard.length == 9)
-                    {
-                        console.log("Tie!");
-                        const body = document.querySelector("body");
-                        const playerWinMessage = document.createElement("h1");
-                        playerWinMessage.textContent = ("Tie!");
-                        body.appendChild(playerWinMessage);
-                        makeMove.forEach(makeMoves => 
-                            {
-                                makeMoves.remove();
-                            });
-                        startGameButton.remove();
-                        return;
-                    }
-
-            gameBoardModule.makePlayerMove();
+                let results = allWins.some(indices => 
+                {
+                    return gridBoxes[indices[0]].textContent == player && 
+                    gridBoxes[indices[1]].textContent == player && 
+                    gridBoxes[indices[2]].textContent == player
+                })
+                return results;
             }
 
-        index++;
-        })
+            if (checkWin("x") == true)
+            {
+                console.log(gameBoardModule.playerArray[0], " wins!");
+                const body = document.querySelector("body");
+                const playerWinMessage = document.createElement("h1");
+                playerWinMessage.textContent = (gameBoardModule.playerArray[0] + " wins!");
+                body.appendChild(playerWinMessage);
+                makeMove.forEach(makeMoves => 
+                {
+                    makeMoves.remove();
+                });
+                startGameButton.remove();
+                return;
+            }
 
-        // Listen for click to start the game.
-        const startGameButton = document.querySelector(".start-game-button");
-        startGameButton.addEventListener("click", createPlayer);
+            else if (checkWin("o") == true)
+            {
+                console.log(gameBoardModule.playerArray[3], " wins!");
+                const body = document.querySelector("body");
+                const playerWinMessage = document.createElement("h1");
+                playerWinMessage.textContent = (gameBoardModule.playerArray[3] + " wins!");
+                body.appendChild(playerWinMessage);
+                makeMove.forEach(makeMoves => 
+                {
+                    makeMoves.remove();
+                });
+                startGameButton.remove();
+                return;
+            }
 
-        // Listen for click to restart the game.
-        const clearBoardButton = document.querySelector(".clear-board-button");
-        clearBoardButton.addEventListener("click", clearBoard);
+            else if (gameBoardModule.gameBoard.length == 9)
+            {
+                console.log("Tie!");
+                const body = document.querySelector("body");
+                const playerWinMessage = document.createElement("h1");
+                playerWinMessage.textContent = ("Tie!");
+                body.appendChild(playerWinMessage);
+                makeMove.forEach(makeMoves => 
+                {
+                    makeMoves.remove();
+                });
+                startGameButton.remove();
+                return;
+            }
 
-        function clearBoard()
-        {
-            location.reload();
+        gameBoardModule.makePlayerMove();
         }
+
+    index++;
+    })
+
+    // Listen for click to start the game.
+    const startGameButton = document.querySelector(".start-game-button");
+    startGameButton.addEventListener("click", createPlayer);
+
+    // Listen for click to restart the game.
+    const clearBoardButton = document.querySelector(".clear-board-button");
+    clearBoardButton.addEventListener("click", clearBoard);
+
+    function clearBoard()
+    {
+        location.reload();
+    }
 })();

@@ -15,3 +15,5 @@
 07/23/2022 00:09 - Player factory function and gameboard module.
 
 07/23/2022 21:07 - Clear board button, checkWin() function.
+
+07/25/2022 20:47 - Minor code cleanup.
